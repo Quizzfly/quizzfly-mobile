@@ -63,14 +63,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     PostLoginResp resp,
     Emitter<LoginState> emit,
   ) {
-    PrefUtils().setAccessToken(resp.accessToken ?? '');
-    PrefUtils().setRefreshToken(resp.refreshToken ?? '');
+    PrefUtils().setAccessToken(resp.data?.accessToken ?? '');
+    PrefUtils().setRefreshToken(resp.data?.refreshToken ?? '');
     emit(
       state.copyWith(
         loginModelObj: state.loginModelObj?.copyWith(),
       ),
-    );
+    );  
   }
 
   void _onLoginError() {}
+
 }

@@ -57,7 +57,7 @@ class ProfileSettingScreenState extends State<ProfileSettingScreen>
                       EditProfileScreen.builder(context),
                       PrivacyScreen.builder(context),
                       ChangePasswordScreen.builder(context),
-                      // BillingPage.builder(context)
+                      ChangePasswordScreen.builder(context),
                     ],
                   ),
                 ),

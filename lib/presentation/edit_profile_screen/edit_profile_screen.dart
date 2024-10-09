@@ -109,7 +109,7 @@ class EditProfileScreen extends StatelessWidget {
       builder: (context, usernameInputController) {
         return CustomTextFormField(
           controller: usernameInputController,
-          hintText: "msg_at_least_8_characters".tr,
+          hintText: "Enter your username",
           contentPadding: EdgeInsets.all(12.h),
           onChanged: (value) {
             _onInputChanged(context);
@@ -119,7 +119,6 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildNameInput(BuildContext context) {
     return BlocSelector<EditProfileBloc, EditProfileState,
         TextEditingController?>(
@@ -127,10 +126,8 @@ class EditProfileScreen extends StatelessWidget {
       builder: (context, nameInputController) {
         return CustomTextFormField(
           controller: nameInputController,
-          hintText: "msg_at_least_8_characters".tr,
+          hintText: "Enter your name",
           contentPadding: EdgeInsets.all(12.h),
-          borderDecoration: TextFormFieldStyleHelper.outlineBlueGrayTL81,
-          fillcolor: appTheme.whiteA700,
           onChanged: (value) {
             _onInputChanged(context);
           },
@@ -139,7 +136,6 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
   Widget _buildEmailInput(BuildContext context) {
     return BlocSelector<EditProfileBloc, EditProfileState,
         TextEditingController?>(
@@ -147,10 +143,8 @@ class EditProfileScreen extends StatelessWidget {
       builder: (context, emailInputController) {
         return CustomTextFormField(
           controller: emailInputController,
-          hintText: "msg_at_least_8_characters".tr,
+          hintText: "Enter your email",
           contentPadding: EdgeInsets.all(12.h),
-          borderDecoration: TextFormFieldStyleHelper.outlineBlueGrayTL81,
-          fillcolor: appTheme.whiteA700,
           onChanged: (value) {
             _onInputChanged(context);
           },
@@ -423,88 +417,6 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.h),
-          Container(
-            width: double.maxFinite,
-            margin: EdgeInsets.symmetric(horizontal: 22.h),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "lbl_account_type".tr,
-                        style: CustomTextStyles.bodyMediumRobotoGray90003,
-                      ),
-                      SizedBox(height: 4.h),
-                      BlocSelector<EditProfileBloc, EditProfileState,
-                          EditProfileModel?>(
-                        selector: (state) => state.editProfileModelObj,
-                        builder: (context, editProfileModelObj) {
-                          return CustomDropDown(
-                            width: 128.h,
-                            icon: Container(
-                              margin: EdgeInsets.only(left: 4.h),
-                              child: CustomImageView(
-                                imagePath: ImageConstant.imageArrowDown,
-                                height: 16.h,
-                                width: 16.h,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            iconSize: 16.h,
-                            hintText: "lbl_account_type".tr,
-                            items: editProfileModelObj?.dropdownItemList1 ?? [],
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 10.h,
-                              vertical: 12.h,
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 126.h,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "msg_type_of_workplace".tr,
-                        style: CustomTextStyles.bodyMediumRobotoGray90003,
-                      ),
-                      SizedBox(height: 8.h),
-                      BlocSelector<EditProfileBloc, EditProfileState,
-                          EditProfileModel?>(
-                        selector: (state) => state.editProfileModelObj,
-                        builder: (context, editProfileModelObj) {
-                          return CustomDropDown(
-                            icon: Container(
-                              margin: EdgeInsets.only(left: 4.h),
-                              child: CustomImageView(
-                                imagePath: ImageConstant.imageArrowDown,
-                                height: 16.h,
-                                width: 16.h,
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            iconSize: 16.h,
-                            hintText: "msg_type_of_workplace".tr,
-                            items: editProfileModelObj?.dropdownItemList2 ?? [],
-                            contentPadding: EdgeInsets.symmetric(
-                              horizontal: 10.h,
-                              vertical: 12.h,
-                            ),
-                          );
-                        },
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )
         ],
       ),
     );

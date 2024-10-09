@@ -25,3 +25,13 @@ class TextFieldChangedEvent extends EditProfileEvent {
   @override
   List<Object> get props => [username, name, email];
 }
+// ignore: must_be_immutable
+class CreateLGetUserEvent extends EditProfileEvent {
+  CreateLGetUserEvent(
+      {this.onCreateLoginEventSuccess, this.onCreateLoginEventError});
+  Function? onCreateLoginEventSuccess;
+  Function? onCreateLoginEventError;
+  @override
+  List<Object?> get props =>
+      [onCreateLoginEventSuccess, onCreateLoginEventError];
+}

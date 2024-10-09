@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import '../../core/app_export.dart';
 import '../models/login/post_login_resp.dart';
 import '../models/register/post_register_resp.dart';
+import '../models/my_user/get_my_user_resp.dart';
 import 'network_interceptor.dart';
 
 // ignore_for_file: must_be_immutable
@@ -12,12 +13,11 @@ class ApiClient {
   ApiClient._internal();
   var url = "http://103.161.96.76:3000";
   static final ApiClient _apiClient = ApiClient._internal();
+
   final _dio =
       Dio(BaseOptions(connectTimeout: const Duration(seconds: 60), headers: {
     "Accept": "application/json",
     "Content-Type": "application/json",
-    "Authorization":
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk1N2JiZWIwLTMyM2ItNGNhZi1iNDI0LTBlNWUxMzliMThjOSIsInJvbGUiOiIiLCJzZXNzaW9uSWQiOiJmZGE1Zjk3ZC02ODVhLTQ5ZDktYTJjMi1kOWFlNTFlZGQ2Y2EiLCJpYXQiOjE3MjI3NzE0MjIsImV4cCI6MTcyMjg1NzgyMn0.WjRnyeic_rxsZCSLvp1MfzpE5Bi8CYG6qeeA5OXFdbQ"
   }))
         ..interceptors.add(NetworkInterceptor());
 
@@ -105,6 +105,32 @@ class ApiClient {
         error,
         stackTrace: stackTrace,
       );
+      rethrow;
+    }
+  }
+
+  /// Get user information with Bearer token
+  Future<GetMyUserResp> getMyUser({
+    Map<String, String> headers = const {},
+  }) async {
+    ProgressDialogUtils.showProgressDialog();
+    try {
+      await isNetworkConnected();
+      var response = await _dio.get(
+        '$url/api/v1/users/me',
+        options: Options(headers: headers),
+      );
+      ProgressDialogUtils.hideProgressDialog();
+      if (isSuccessCall(response)) {
+        return GetMyUserResp.fromJson(response.data);
+      } else {
+        throw response.data != null
+            ? GetMyUserResp.fromJson(response.data)
+            : 'Something Went Wrong!';
+      }
+    } catch (error, stackTrace) {
+      ProgressDialogUtils.hideProgressDialog();
+      Logger.log(error, stackTrace: stackTrace);
       rethrow;
     }
   }
