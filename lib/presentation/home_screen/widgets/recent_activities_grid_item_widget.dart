@@ -14,12 +14,23 @@ class RecentActivitiesGridItemWidget extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(
-        borderRadius: BorderRadiusStyle.roundedBorder8,
-        border: Border.all(
-          color: appTheme.blueGray10002,
-          width: 0.5.h,
-        ),
-      ),
+          color: appTheme.whiteA700.withOpacity(1),
+          borderRadius: BorderRadiusStyle.roundedBorder20,
+          border: Border.all(
+            color: appTheme.blueGray10002,
+            width: 0.5.h,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: appTheme.black900.withOpacity(0.05),
+              spreadRadius: 2.h,
+              blurRadius: 10.h,
+              offset: const Offset(
+                0,
+                4,
+              ),
+            )
+          ]),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -39,9 +50,8 @@ class RecentActivitiesGridItemWidget extends StatelessWidget {
               padding: EdgeInsets.only(left: 6.h),
               child: Text(
                 recentActivitiesGridItemModelObj.title!,
-                style: CustomTextStyles.bodyMediumBlack900_1.copyWith(
-                  fontWeight : FontWeight.w600
-                ),
+                style: CustomTextStyles.bodyMediumBlack900_1
+                    .copyWith(fontWeight: FontWeight.w600),
               ),
             ),
           ),

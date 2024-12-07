@@ -101,6 +101,9 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
       emailInputController: TextEditingController(text: resp.data?.email ?? ''),
       imageFile: resp.data?.userInfo?.avatar,
     ));
+    PrefUtils().setUsername(resp.data?.userInfo?.username ?? '');
+    PrefUtils().setName(resp.data?.userInfo?.name ?? '');
+    PrefUtils().setAvatar(resp.data?.userInfo?.avatar ?? '');
   }
 
   void _onGetMyUserError() {}

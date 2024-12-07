@@ -9,9 +9,6 @@ class LibraryListItemModel extends Equatable {
   final String? quizzflyStatus;
   final String? createdAt;
   final bool? isPublic;
-  final String? userId;
-  final String? username;
-  final String? avatar;
 
   // UI-specific fields
   final String?
@@ -29,9 +26,6 @@ class LibraryListItemModel extends Equatable {
     this.quizzflyStatus,
     this.createdAt,
     this.isPublic,
-    this.userId,
-    this.username,
-    this.avatar,
     this.displayImage,
     this.displayTitle,
     this.displayDate,
@@ -62,9 +56,6 @@ class LibraryListItemModel extends Equatable {
       quizzflyStatus: quizzflyStatus ?? this.quizzflyStatus,
       createdAt: createdAt ?? this.createdAt,
       isPublic: isPublic ?? this.isPublic,
-      userId: userId ?? this.userId,
-      username: username ?? this.username,
-      avatar: avatar ?? this.avatar,
       displayImage: displayImage ?? this.displayImage,
       displayTitle: displayTitle ?? this.displayTitle,
       displayDate: displayDate ?? this.displayDate,
@@ -86,9 +77,6 @@ class LibraryListItemModel extends Equatable {
       quizzflyStatus: json['quizzfly_status'] as String?,
       createdAt: json['created_at'] as String?,
       isPublic: isPublic,
-      userId: json['user_id'] as String?,
-      username: json['username'] as String?,
-      avatar: json['avatar'] as String?,
       displayImage: json['cover_image'] ?? ImageConstant.imgNotFound,
       displayTitle: json['title'] ?? "Untitled",
       displayDate: formattedDate,
@@ -106,9 +94,6 @@ class LibraryListItemModel extends Equatable {
         quizzflyStatus,
         createdAt,
         isPublic,
-        userId,
-        username,
-        avatar,
         displayImage,
         displayTitle,
         displayDate,

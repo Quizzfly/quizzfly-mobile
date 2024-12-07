@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../widgets/custom_elevated_button.dart';
-import '../../library_screen/models/library_list_item_model.dart';
+import '../../my_group_screen/models/my_group_list_item_model.dart';
 
 // ignore_for_file: must_be_immutable
-class LibraryListItemWidget extends StatelessWidget {
-  LibraryListItemWidget(this.libraryListItemModelObj,
+class MyGroupListItemWidget extends StatelessWidget {
+  MyGroupListItemWidget(this.myGroupListItemModelObj,
       {super.key, this.callDetail, this.onDelete});
 
-  LibraryListItemModel libraryListItemModelObj;
+  MyGroupListItemModel myGroupListItemModelObj;
 
   VoidCallback? callDetail;
 
@@ -50,23 +50,16 @@ class LibraryListItemWidget extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Hero(
-                      tag: 'library_cover_image_${libraryListItemModelObj.id}',
-                      child: Material(
-                        type: MaterialType.transparency,
-                        child: CustomImageView(
-                          imagePath: libraryListItemModelObj.displayImage,
-                          height: 130.h,
-                          width: double.maxFinite,
-                          radius: const BorderRadius.horizontal(
-                            left: Radius.circular(20),
-                            right: Radius.zero,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
+                    CustomImageView(
+                      imagePath: myGroupListItemModelObj.displayImage,
+                      height: 130.h,
+                      width: double.maxFinite,
+                      radius: const BorderRadius.horizontal(
+                        left: Radius.circular(20),
+                        right: Radius.zero,
                       ),
+                      fit: BoxFit.cover,
                     ),
-                    _buildQuestionsButton(context)
                   ],
                 ),
               ),
@@ -76,50 +69,28 @@ class LibraryListItemWidget extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 5.h),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      libraryListItemModelObj.displayTitle ?? "",
-                      style: theme.textTheme.titleMedium,
-                    ),
+                  Row(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          myGroupListItemModelObj.displayNameOfGroup ?? "",
+                          style: theme.textTheme.titleMedium,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      _buildStatusButton()
+                    ],
                   ),
                   SizedBox(height: 8.h),
                   SizedBox(
                     width: double.maxFinite,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          libraryListItemModelObj.displayDate ?? "",
-                          style: theme.textTheme.bodySmall,
-                        ),
-                        _buildStatusButton(context)
-                      ],
+                    child: Text(
+                      myGroupListItemModelObj.displayDate ?? "",
+                      style: theme.textTheme.bodySmall,
                     ),
                   ),
                   SizedBox(height: 6.h),
-                  SizedBox(
-                    width: double.maxFinite,
-                    child: Row(
-                      children: [
-                        CustomImageView(
-                          imagePath: libraryListItemModelObj.publicIcon,
-                          height: 16.h,
-                          width: 14.h,
-                        ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 4.h),
-                            child: Text(
-                              libraryListItemModelObj.publicText ?? "",
-                              style: CustomTextStyles.labelMediumBlack900,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
                   // Container(
                   //     width: double.maxFinite,
                   //     alignment: Alignment.topRight,
@@ -134,8 +105,8 @@ class LibraryListItemWidget extends StatelessWidget {
                   //       ),
                   //       onTap: () {
                   //         if (onDelete != null &&
-                  //             libraryListItemModelObj.id != null) {
-                  //           onDelete!(libraryListItemModelObj.id!);
+                  //             myGroupListItemModelObj.id != null) {
+                  //           onDelete!(myGroupListItemModelObj.id!);
                   //         }
                   //       },
                   //     ))
@@ -148,11 +119,11 @@ class LibraryListItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildStatusButton(BuildContext context) {
+  Widget _buildStatusButton() {
     return CustomElevatedButton(
       height: 24.h,
       width: 55.h,
-      text: libraryListItemModelObj.quizzflyStatus ?? "lbl_draft".tr,
+      text: myGroupListItemModelObj.role ?? "HOST",
       margin: EdgeInsets.only(left: 8.h),
       buttonStyle: CustomButtonStyles.fillErrorRadius5,
       buttonTextStyle: CustomTextStyles.labelSmallRed700,
@@ -161,7 +132,7 @@ class LibraryListItemWidget extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildQuestionsButton(BuildContext context) {
+  Widget _buildQuestionsButton() {
     return CustomElevatedButton(
       height: 22.h,
       width: 45.h,

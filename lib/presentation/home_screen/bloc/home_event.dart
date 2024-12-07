@@ -29,3 +29,23 @@ class CreateGetRecentActivitiesEvent extends HomeEvent {
   List<Object?> get props =>
       [onGetRecentActivitiesSuccess, onGetRecentActivitiesError, id];
 }
+
+class CreateGroupEvent extends HomeEvent {
+  final Function? onCreateGroupSuccess;
+  final Function? onCreateGroupError;
+  final String? name;
+  final String? description;
+  final dynamic background;
+
+  CreateGroupEvent({
+    this.onCreateGroupSuccess,
+    this.onCreateGroupError,
+    this.name,
+    this.description,
+    this.background,
+  });
+
+  @override
+  List<Object?> get props =>
+      [onCreateGroupSuccess, onCreateGroupError, name, description, background];
+}

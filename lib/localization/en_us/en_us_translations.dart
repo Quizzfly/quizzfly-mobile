@@ -244,6 +244,10 @@ final Map<String, String> enUs = {
   "lbl_create_group": "Create group",
   "msg_this_is_a_back_to": "No description",
   "lbl_hello": "Untitled",
+  "lbl_add_image": "Add image here +",
+  "lbl_create": "Create",
+  "lbl_enter_description": "Enter description ...",
+  "lbl_enter_name": "Enter name ...",
   //Network error
   "msg_newtwork_err": "Network Error",
   "msg_something_went wrong": "Something went wrong",

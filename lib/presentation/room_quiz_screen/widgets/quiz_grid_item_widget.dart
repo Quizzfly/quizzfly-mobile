@@ -97,7 +97,7 @@ class _QuizGridItemWidgetState extends State<QuizGridItemWidget>
                   Text(
                     widget.quizGridItemModelObj.textAnswer!,
                     style: CustomTextStyles.titleMediumWhiteA700Bold.copyWith(
-                      fontSize: isTrueFalse ? 24.fSize : null,
+                      fontSize: isTrueFalse ? 24.fSize : 20.fSize,
                     ),
                     textAlign: TextAlign.center,
                   ),

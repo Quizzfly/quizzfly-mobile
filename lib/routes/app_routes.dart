@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quizzfly_application_flutter/presentation/community_screen/community_screen.dart';
 import 'package:quizzfly_application_flutter/presentation/home_screen/home_initial_page.dart';
 import 'package:quizzfly_application_flutter/presentation/home_screen/home_screen.dart';
+import 'package:quizzfly_application_flutter/presentation/my_group_screen/my_group_screen.dart';
 import '../presentation/enter_pin_screen/enter_pin_screen.dart';
 import '../presentation/input_nickname_screen/input_nick_name_screen.dart';
 import '../presentation/quizzfly_setting_screen/quizzfly_setting_screen.dart';
@@ -39,6 +40,7 @@ class AppRoutes {
   static const String homeInitialPage = "/home_initial_page";
   static const String communityScreen = "/community_screen";
   static const String homeScreen = "/home_screen";
+  static const String myGroupScreen = "/my_group_screen";
 
   static Map<String, WidgetBuilder> get routes => {
         loginScreen: LoginScreen.builder,
@@ -58,6 +60,7 @@ class AppRoutes {
         communityScreen: CommunityScreen.builder,
         homeInitialPage: HomeInitialPage.builder,
         homeScreen: HomeScreen.builder,
+        myGroupScreen: MyGroupScreen.builder
       };
   // static Route<dynamic> generateRoute(RouteSettings settings) {
   //   switch (settings.name) {

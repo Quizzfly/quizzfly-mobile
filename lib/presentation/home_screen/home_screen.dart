@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quizzfly_application_flutter/presentation/community_screen/community_screen.dart';
 import 'package:quizzfly_application_flutter/presentation/library_screen/library_screen.dart';
+import 'package:quizzfly_application_flutter/presentation/my_group_screen/my_group_screen.dart';
 import 'package:quizzfly_application_flutter/presentation/profile_setting_screen/profile_setting_screen.dart';
 import '../../core/app_export.dart';
 import '../../widgets/custom_bottom_bar.dart';
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
       case BottomBarEnum.Library:
         return AppRoutes.libraryScreen;
       case BottomBarEnum.Group:
-        return AppRoutes.communityScreen;
+        return AppRoutes.myGroupScreen;
       case BottomBarEnum.Account:
         return AppRoutes.profileSettingScreen;
       default:
@@ -83,8 +83,8 @@ class HomeScreen extends StatelessWidget {
         return HomeInitialPage.builder(context);
       case AppRoutes.libraryScreen:
         return LibraryScreen.builder(context);
-      case AppRoutes.communityScreen:
-        return CommunityScreen.builder(context);
+      case AppRoutes.myGroupScreen:
+        return MyGroupScreen.builder(context);
       case AppRoutes.profileSettingScreen:
         return ProfileSettingScreen.builder(context);
       default:

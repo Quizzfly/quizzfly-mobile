@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/show_dialog_widget.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 import '../../core/app_export.dart';
 import '../../routes/navigation_args.dart';
@@ -72,6 +73,12 @@ class HomeInitialPageState extends State<HomeInitialPage> {
                       ),
                       CustomElevatedButton(
                         width: 118.h,
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) => ShowDialogWidget.builder(context),
+                          );
+                        },
                         text: "lbl_create_group".tr,
                         margin: EdgeInsets.only(left: 4.h),
                         buttonStyle: CustomButtonStyles.outlineDeepPurple20,
@@ -89,7 +96,8 @@ class HomeInitialPageState extends State<HomeInitialPage> {
                       padding: EdgeInsets.only(left: 12.h),
                       child: Text(
                         "msg_recent_activities".tr,
-                        style: CustomTextStyles.titleMediumRobotoBlack900,
+                        style: CustomTextStyles.titleMediumRobotoBlack900
+                            .copyWith(fontSize: 18.h),
                       ),
                     ),
                     SizedBox(height: 22.h),
@@ -107,10 +115,19 @@ class HomeInitialPageState extends State<HomeInitialPage> {
 
   Widget _greetingWidget() {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundImage: NetworkImage(PrefUtils().getAvatar()),
+            backgroundColor: Colors.transparent,
+            // ignore: unnecessary_null_comparison
+            child: PrefUtils().getAvatar() == null
+                ? const Icon(Icons.person, size: 24)
+                : null,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -119,16 +136,20 @@ class HomeInitialPageState extends State<HomeInitialPage> {
                   Text(
                     'Hello, ',
                     style: TextStyle(
-                        fontSize: 23,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: appTheme.black900.withOpacity(0.7)),
                   ),
-                  Text(
-                    PrefUtils().getName(),
-                    style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: appTheme.black900.withOpacity(0.7)),
+                  SizedBox(
+                    width: 140.h,
+                    child: Text(
+                      PrefUtils().getName(),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: appTheme.black900.withOpacity(0.7),
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ),
                   const Text(
                     ' 👋',
@@ -153,16 +174,7 @@ class HomeInitialPageState extends State<HomeInitialPage> {
               ),
             ],
           ),
-          const SizedBox(width: 16),
-          CircleAvatar(
-            radius: 24,
-            backgroundImage: NetworkImage(PrefUtils().getAvatar()),
-            backgroundColor: Colors.transparent,
-            // ignore: unnecessary_null_comparison
-            child: PrefUtils().getAvatar() == null
-                ? const Icon(Icons.person, size: 24)
-                : null,
-          ),
+          SizedBox(width: 5.h),
         ],
       ),
     );
